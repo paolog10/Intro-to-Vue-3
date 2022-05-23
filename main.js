@@ -22,8 +22,10 @@ const app = Vue.createApp({
             this.image=variantImage;
         },
 
-        LessToCart(){ //v-on tiene abreviación @
-            this.cart -= 1;
+        LessToCart(){
+            if (this.cart >= 1) { //validar números no negativos
+               this.cart -= 1; 
+            }
         },
     }
 })
