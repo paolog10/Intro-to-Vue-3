@@ -29,7 +29,7 @@
             <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
 
             <ul>
-              <li v-for="size in sizes">{{size}}</li>
+              <li v-for="size in sizes" :key="sizes.index">{{size.size}}</li>
             </ul>
 
           </div>
