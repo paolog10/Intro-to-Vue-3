@@ -21,11 +21,8 @@
           <div class="product-image">
             <img 
               v-bind:src="image"
-              class="out-of-stock-img"
-                        
-              :disabled="!inStock">
+              :class="{ 'out-of-stock-img': !inStock }">                      
           </div>
-          <!--:class="{out-of-stock-img: !inStock}" ponerlo en linea 25-->
 
           <div class="product-info">
             <h1>{{ product }}</h1>
