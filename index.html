@@ -15,10 +15,18 @@
       <div class="cart">Cart({{ cart }})</div>
       
       <div class="product-display">
+
         <div class="product-container">
+
           <div class="product-image">
-            <img v-bind:src="image">
+            <img 
+              v-bind:src="image"
+              class="out-of-stock-img"
+                        
+              :disabled="!inStock">
           </div>
+          <!--:class="{out-of-stock-img: !inStock}" ponerlo en linea 25-->
+
           <div class="product-info">
             <h1>{{ product }}</h1>
             <p v-if="inStock">In Stock</p>
@@ -30,9 +38,19 @@
             <div 
               v-for="variant in variants" 
               :key="variant.id" 
-              @mouseover="updateImage(variant.image)" 
-            >{{ variant.color }}</div>
-            <button class="button" @click="addToCart">Add to Cart</button>
+              @mouseover="updateImage(variant.image)"
+              class="color-circle"
+              :style="{backgroundColor: variant.color}" 
+            ></div>
+
+            <button 
+              class="button"
+              :class="{ disabledButton: !inStock }" 
+              :disabled="!inStock" 
+              @click="addToCart">
+              Add to Cart
+            </button>
+
           </div>
         </div>
       </div>
