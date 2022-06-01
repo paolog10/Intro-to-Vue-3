@@ -39,9 +39,20 @@ app.component('product-display', {
           v-on:click="addToCart">
           Add to Cart
         </button>
+
+        <!--solución-->
+        <button 
+          class="button" 
+          :class="{ disabledButton: !inStock }" 
+          :disabled="!inStock" 
+          v-on:click="removeFromCart">
+          Remove Item
+        </button>
+
       </div>
     </div>
   </div>`,
+
   data() {
     return {
         product: 'Socks',
@@ -56,10 +67,18 @@ app.component('product-display', {
   },
   methods: {
       addToCart() {
-          this.cart += 1
+          this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
       },
       updateVariant(index) {
           this.selectedVariant = index
+      },
+
+      //solución
+      removeById(id) {
+        const index = this.cart.indexOf(id)
+          if (index > -1) {
+            this.cart.splice(index, 1)
+          }
       }
   },
   computed: {
